@@ -1,5 +1,5 @@
 import { MetadataRoute } from 'next';
-import { allToursData } from '@/data/toursData';
+import { allToursData } from '@/data/centralizedData';
 import { siteConfig } from '@/lib/seo';
 
 // Generate sitemap for better SEO
