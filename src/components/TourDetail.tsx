@@ -150,7 +150,30 @@ const TourDetail: React.FC<TourDetailProps> = ({ tourId }) => {
         <div className="space-y-8">
           {/* Price card */}
           <div className="bg-white rounded-xl shadow-lg p-6">
-            <div className="text-3xl font-bold text-orange-600 mb-4">{tour.price}</div>
+            <div className="text-center mb-6">
+              <div className="text-3xl font-bold text-orange-600 mb-2">{tour.price}</div>
+              <div className="text-gray-600">per person</div>
+            </div>
+
+            <div className="space-y-4 mb-6">
+              <div className="flex justify-between">
+                <span className="text-gray-600">Duration:</span>
+                <span className="font-semibold">{tour.duration}</span>
+              </div>
+              <div className="flex justify-between">
+                <span className="text-gray-600">Group Size:</span>
+                <span className="font-semibold">{tour.groupSize}</span>
+              </div>
+              <div className="flex justify-between">
+                <span className="text-gray-600">Difficulty:</span>
+                <span className="font-semibold">{tour.difficulty}</span>
+              </div>
+              <div className="flex justify-between">
+                <span className="text-gray-600">Best Season:</span>
+                <span className="font-semibold">{tour.season}</span>
+              </div>
+            </div>
+
             <button onClick={handleBookingClick} className="w-full bg-orange-600 text-white py-3 px-6 rounded-lg hover:bg-orange-700 transition-colors">
               Book Now
             </button>
