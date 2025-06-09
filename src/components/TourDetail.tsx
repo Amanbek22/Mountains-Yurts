@@ -3,7 +3,7 @@
 import React from 'react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
-import { Check, ArrowLeft } from 'lucide-react';
+import { Check, ArrowLeft, Calendar, Users, Star, MapPin } from 'lucide-react';
 import { allToursData } from '@/data/centralizedData';
 
 interface TourDetailProps {
@@ -77,6 +77,25 @@ const TourDetail: React.FC<TourDetailProps> = ({ tourId }) => {
             <h2 className="text-3xl font-bold text-gray-900 mb-6">Tour Description</h2>
             <p className="text-gray-700 leading-relaxed">{tour.description}</p>
           </section>
+
+          <div className="grid md:grid-cols-2 gap-6 mb-8">
+            <div className="flex items-center gap-3">
+              <Calendar className="h-5 w-5 text-blue-600" />
+              <span className="text-gray-700">{tour.duration}</span>
+            </div>
+            <div className="flex items-center gap-3">
+              <Users className="h-5 w-5 text-blue-600" />
+              <span className="text-gray-700">{tour.groupSize}</span>
+            </div>
+            <div className="flex items-center gap-3">
+              <Star className="h-5 w-5 text-yellow-500 fill-current" />
+              <span className="text-gray-700">{tour.rating} rating</span>
+            </div>
+            <div className="flex items-center gap-3">
+              <MapPin className="h-5 w-5 text-green-600" />
+              <span className="text-gray-700">{tour.difficulty}</span>
+            </div>
+          </div>
 
           {/* Highlights */}
           <section>
