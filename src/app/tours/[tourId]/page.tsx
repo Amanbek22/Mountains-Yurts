@@ -8,7 +8,7 @@ import { generateTourMetadata, generateTourStructuredData } from '@/lib/seo';
 import { allToursData } from '@/data/centralizedData';
 
 type Props = {
-  params: { tourId: string }
+  params: Promise<{ tourId: string }>
 }
 
 // Generate static params for all tours (for static generation)
@@ -19,21 +19,23 @@ export async function generateStaticParams() {
 }
 
 // Generate metadata for each tour page
-// export async function generateMetadata({ params }: Props): Promise<Metadata> {
-//   const tour = allToursData.find((t) => t.id === params.tourId);
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const resolvedParams = await params;
+  const tour = allToursData.find((t) => t.id === resolvedParams.tourId);
   
-//   if (!tour) {
-//     return {
-//       title: 'Tour Not Found',
-//       description: 'The requested tour could not be found.',
-//     };
-//   }
+  if (!tour) {
+    return {
+      title: 'Tour Not Found',
+      description: 'The requested tour could not be found.',
+    };
+  }
 
-//   return generateTourMetadata(tour);
-// }
+  return generateTourMetadata(tour);
+}
 
-export default function TourPage({ params }: Props) {
-  const tour = allToursData.find((t) => t.id === params.tourId);
+export default async function TourPage(props: Props) {
+  const resolvedParams = await props.params;
+  const tour = allToursData.find((t) => t.id === resolvedParams.tourId);
 
   if (!tour) {
     notFound();
@@ -46,7 +48,7 @@ export default function TourPage({ params }: Props) {
       
       <Header />
       <main>
-        <TourDetail tourId={params.tourId} />
+        <TourDetail tourId={resolvedParams.tourId} />
       </main>
       <Footer />
     </>
