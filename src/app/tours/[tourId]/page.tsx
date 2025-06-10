@@ -9,7 +9,6 @@ import { allToursData } from '@/data/centralizedData';
 
 type Props = {
   params: { tourId: string }
-  searchParams: { [key: string]: string | string[] | undefined }
 }
 
 // Generate static params for all tours (for static generation)
@@ -20,18 +19,18 @@ export async function generateStaticParams() {
 }
 
 // Generate metadata for each tour page
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const tour = allToursData.find((t) => t.id === params.tourId);
+// export async function generateMetadata({ params }: Props): Promise<Metadata> {
+//   const tour = allToursData.find((t) => t.id === params.tourId);
   
-  if (!tour) {
-    return {
-      title: 'Tour Not Found',
-      description: 'The requested tour could not be found.',
-    };
-  }
+//   if (!tour) {
+//     return {
+//       title: 'Tour Not Found',
+//       description: 'The requested tour could not be found.',
+//     };
+//   }
 
-  return generateTourMetadata(tour);
-}
+//   return generateTourMetadata(tour);
+// }
 
 export default function TourPage({ params }: Props) {
   const tour = allToursData.find((t) => t.id === params.tourId);
