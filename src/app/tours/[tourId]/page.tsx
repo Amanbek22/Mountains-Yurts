@@ -21,8 +21,7 @@ export async function generateStaticParams() {
 
 // Generate metadata for each tour page
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const p = await params;
-  const tour = allToursData.find((t) => t.id === p.tourId);
+  const tour = allToursData.find((t) => t.id === params.tourId);
   
   if (!tour) {
     return {
@@ -34,9 +33,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return generateTourMetadata(tour);
 }
 
-export default async function TourPage({ params }: Props) {
-  const p = await params;
-  const tour = allToursData.find((t) => t.id === p.tourId);
+export default function TourPage({ params }: Props) {
+  const tour = allToursData.find((t) => t.id === params.tourId);
 
   if (!tour) {
     notFound();
@@ -49,7 +47,7 @@ export default async function TourPage({ params }: Props) {
       
       <Header />
       <main>
-        <TourDetail tourId={p.tourId} />
+        <TourDetail tourId={params.tourId} />
       </main>
       <Footer />
     </>
