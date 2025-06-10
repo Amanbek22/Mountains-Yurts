@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import { Check, ArrowLeft, Calendar, Users, Star, MapPin } from 'lucide-react';
 import { allToursData } from '@/data/centralizedData';
+import TourMap from './TourMap';
 
 interface TourDetailProps {
   tourId: string;
@@ -127,6 +128,8 @@ const TourDetail: React.FC<TourDetailProps> = ({ tourId }) => {
               ))}
             </div>
           </section>
+
+          <TourMap tourId='nomad-life' />
 
           {/* Gallery */}
           <section>
